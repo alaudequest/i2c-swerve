@@ -1,0 +1,4 @@
+../Core/Src/BoardParameter.c:15:20:CheckError	4	static
+../Core/Src/BoardParameter.c:23:6:BrdParam_Init	16	static
+../Core/Src/BoardParameter.c:28:6:BrdParam_HandleListenIRQ	16	static
+../Core/Src/BoardParameter.c:39:6:BrdParam_HandleReceiveData	16	static
