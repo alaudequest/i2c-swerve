@@ -10,13 +10,13 @@
 #include "main.h"
 #include "stdbool.h"
 
-typedef enum ModePID{
+typedef enum ModePID {
 	MODE_PID_SPEED,
 	MODE_PID_ANGLE
-}ModePID;
+} ModePID;
 
-typedef enum DeviceRegister{
-	DEV_REG_SPEED_KP,
+typedef enum SwerveParamRegister {
+	DEV_REG_SPEED_KP = 1,
 	DEV_REG_SPEED_KI,
 	DEV_REG_SPEED_KD,
 
@@ -27,23 +27,24 @@ typedef enum DeviceRegister{
 	DEV_REG_TARGET_SPEED,
 	DEV_REG_TARGET_ANGLE,
 	DEV_REG_MODE,
-}DeviceRegister;
-
+} SwerveParamRegister;
 
 typedef struct ParamPID {
 	float kp;
 	float ki;
 	float kd;
-}ParamPID ;
+} ParamPID;
 
 typedef struct BoardData {
 	ParamPID pidPosition;
 	ParamPID pidAngle;
+	float targetSpeed;
+	float targetAngle;
 	bool mode;
-}BoardData ;
-
-void BrdParam_HandleListenIRQ(I2C_HandleTypeDef *hi2c, uint8_t reg);
-void BrdParam_HandleReceiveData(I2C_HandleTypeDef *hi2c);
-
+} BoardData;
+void BrdParam_SetTransferDirection(uint8_t TransferDirection);
+uint8_t* BrdParam_GetAddrRxBuffer();
+uint8_t* BrdParam_GetAddrTxBuffer();
+void BrdParam_HandleReceiveDataCallback(I2C_HandleTypeDef *hi2c);
 
 #endif /* INC_BOARDPARAMETER_H_ */
